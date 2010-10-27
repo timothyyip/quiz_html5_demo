@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html manifest="demo.manifest">
+    <head>
+
+        <meta charset=utf-8 />
+        <meta name="viewport" content="width=620" />
+
+
+        <title>offline Cimex xmas site</title>
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="crypto.js"></script>
+        <script>
+
+            var teaxs=null;
+            var db = null;
+            if (window.openDatabase) {
+                db = openDatabase('mydb', '1.0', 'my first database', 1024 * 1024);
+                if (!db)
+                    alert("Failed to open the database on disk.  This is probably because the version was bad or there is not enough space left in this domain's quota");
+    
+
+                db.transaction(function (tx) {
+                    tx.executeSql('INSERT INTO p (id, secretcipher, salt, iv) VALUES (1, "ZCkN6XVfHlFNwHr9nq+ng4NPdcgqoOIg5ojVecoJJQCLXu/mZzKdzyMHNfI6LJS7cFTCIrbjAGec74/XlN0BCPucsUnX7SIlx/qIfn2GFisJ9ZbjVbT4Wz2VFn6SkUET1I3nHPr2xWFbPB/9V7XjxUqp9gB3EEI+k2SsK1TdNehTtRPLKYeibS/f7KEvxtVD8tzJb0pOJuwNmWsevZDktaxo61kWgfejVlhHvMFMxwO2l5XEwVgnrx9W81NloOb9YwBASjoaSptNo/z0lSeMuOCE+Le27B8CK8tJYBdc3usyc9GYQipeJ1V/wV3Mbj3e4XJrosKb3Ftb7U7Gz3/TuvOb8jcF2dVykqztUS+5p3Lg0jI0QEvhUDwiQ5VbUjRM9fc/bjmaOYHXqcozlBL24EfUh0C6QBKf2gzMrnW4nFseFvT4oPVB/5I+0baf+wiPB7i1/TgptTz2uJgvjmPHXYBnfNeV7fgbaxjM6OsHbFkEzKcgpOcdcC6Jod9CKNK9GiRvS80nKvW7Sqt7UbrnqohUB3FirynR6LW3J1YMCWfU9T1Rz0vKikQSymE6TElMFkNTLPJ+qDFaTzbjq4B59puEbIedPHq9JuQEhBH83+mxR1Olad61ocsXBmIJHU5mH9tgKasLHNGFrMNiN3T8ZvkOdo7dJHq5wWlAxcIPF2/phn9/TA4x3UcaAygrYCodKc3+FFgROSyZUQB81lRpE7Au5WMbRpCh1Qbr8If3sHIFiv6TGJLtTm54ZRVhexVLvDm4dAC8NPwkDkya7hdA2aBCGvndOr6uE+yttIvGOgb/nvniqZcwhRdc/yIjgXpe+Qh6RrlCaLbsnlhO/nxeUAPOTWU5PMZdAWuwFdP/RQ+OlnUUJNzHep47WZEZz/29WGengVmU51HLavOJ0mIAJ77xWO5A0oEFBab7AfYejmCclSUz2Alx5Ezok3rhM7Ymye9eLL3ks/TuIeGWzWmMuyTPWwmpeTgBNxwy+agbEB3nViHDGSl2Hzg6nk/JnFqvmvArlMy2zV2dSZ8BA6kyJ1RpjTTgYat5ZKqv+p54MEgTPxsSvGUlAq5d2TdPNQ2417QAlw4UJPKvyDR0tvD3zRWxxTce9g", "sI96imzd3po", "kDbiqR7NIFtUZzWHoYDmYg")');
+                    tx.executeSql('INSERT INTO p (id, secretcipher, salt, iv) VALUES (2, "Yv2LuPH+RypxmmE+KTH3LPpoYLiDQX8g6UVUd4Nmoaka8BVH1d6YmUaJzFPKwBVdEbxKQ40MUcIimIUyNvPgwGKBDzqcYTesaYSwmWAA33+nuF4gHay8gKN34OcvA+oTDDFTH5kJEpchct/VQI3bZHXulk/D/c/VrQ5tBkZ4XICWzZJSqvKNKXUUa/x+UEkRRsIExze2O+uKgaLyseT5Q5VR0hLbgs7x3/Qn1MLKB7Yv5ZI0DDI/MYHd40cHatepzmqYh5dugf6ixaK3E6TV1BYpaxQYVLU/OxmNnybddUXeX2Q1Ab6RcY01j4cAq14YFFQVQeCsraTid4MzSyoE7JtJzxl1EIw9zH695OSU6gdf5U190wVm1B9IK9oJ9+kAF3Vhno8IoBaL0a4S+6m0qpeiBqKLfwUmIDBJqX1/VcbCZEKzNAFzKkT2Z3UEU2GF31RkctH4RDyvTg0MN3BRpG8LMS7maoWAaSNF10HSQ4djqltwDyzQEKz+NmbzP2d4XSx5UM6azD0s8MuPyILN5KT3+//dp6+P49Mem3K266258EwBJAXz9juROl3atFUuozltL7cBhQB2IjJEvH214qLXYDe101Opmgh8RqF/0QhTUiMiLCqisR5VLazPhH8sAx+ZPTaJOgq3utKq3G68qaZN+eehyXmhhe+iLhm9IFEHA4cCTwjtbeKlYMvFiFFZ+7J97VzQsJASNBT5dPnXm0Jpfr5XyhLU9dNLhSKdALE3oZ/8IYJRRiFk1lGRIujWF15mBBfb0vMgCz0k3fBCuJAcLrUJHarQDkcxs3Z+P23hm6XosPP8QD1YfPb3pNp4D2gfd3kOOipfkkLICNTR6nQB4eGeyEP8AxAJgYnY2E5mWGyVJWgH5tKE", "ce4Cb0g9+qs", "b8uypGTUxAwImJlHG/mjvw")');
+                    tx.executeSql('INSERT INTO p (id, secretcipher, salt, iv) VALUES (3, "fO9U+tOOZ5SAz4gLcLnzdt5WamL/ydbxE+HOYv1xgqvk3sr9JooAhoqJdTHU", "i5TscmpahUA", "ofqvjB5IXwyguKZ7erfvCg")');
+                });
+
+                db.transaction(function (tx) {
+                    tx.executeSql('SELECT * FROM divtext', [], function (tx, results) {
+                        //     alert(results.rows.item(0).secretcipher);
+                        $('div.ok').append(results.rows.item(0).content);
+
+                    });
+                });
+            }
+            
+            function killtables()
+            {
+                db.transaction(function (tx) {
+                    tx.executeSql('DROP TABLE IF EXISTS p');
+                    tx.executeSql('DROP TABLE IF EXISTS divtext');
+                });
+               
+                db.transaction(function (tx) {
+                    tx.executeSql('CREATE TABLE p (id unique, secretcipher TEXT, salt TEXT, iv TEXT)');
+                });
+                db.transaction(function (tx) {
+                    tx.executeSql('CREATE TABLE divtext (content TEXT)');
+                });
+                db.transaction(function (tx) {
+                    tx.executeSql('INSERT INTO divtext (content) VALUES ("<p><h3>Start!!:</h3> Type in cimex to start<br/><input type=\"\"text\"\" placeholder=\"\"cimex\"\" id=\"\"answer1\"\"></input><a href=\"\"#\"\" onclick=\"\"answer(1);\"\">Submit</a></p>")');
+                });
+            }
+
+
+            function answer(qnum)
+            {
+                var password = $('input#answer'+qnum).val();
+                loadNotes(password,qnum);
+            }
+
+            function loadNotes(password, qnum)
+            {
+                db.transaction(function (tx) {
+                    tx.executeSql('SELECT * FROM p WHERE id = '+qnum, [], function (tx, results) {
+                        //     alert(results.rows.item(0).secretcipher);
+                        getresulttotext(password,results.rows.item(0).secretcipher,results.rows.item(0).salt,results.rows.item(0).iv);
+ 
+                    });
+                });
+
+
+            }
+
+            function getresulttotext(password,text, salt, iv)
+            {
+                $('div.ok').append(sjcl.decrypt(password,"{iv:\""+iv+"\",salt:\""+salt+"\",ct:\""+text+"\"}"));
+
+                var texten = sjcl.encrypt("password",$('div.ok').html());
+
+
+                //alert(texten.iv);
+                db.transaction(function (tx) {
+                    tx.executeSql('UPDATE divtext set content = \''+ $('div.ok').html() +'\'');
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <!-- Put your Markup Here -->
+
+
+        <div id="status" class="ok">
+        </div>
+        <a href="#" onclick="killtables()">Kill/Reset</a>
+
+        <script>
+            // $('div.ok').append(sjcl.encrypt("abc", "Congratulations Your next stop is hell"));
+            loadNotes();
+        </script>
+    </body>
+</html>
